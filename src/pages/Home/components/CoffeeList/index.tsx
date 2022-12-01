@@ -18,6 +18,7 @@ export function CoffeeList() {
         <CoffeeCard key={3} />
         <CoffeeCard key={4} />
         <CoffeeCard key={5} />
+        <CoffeeCard key={6} />
       </CoffeeListContainer>
     </CoffeeListWrapper>
   )
