@@ -20,6 +20,8 @@ export function CoffeeList() {
         <CoffeeCard key={5} />
         <CoffeeCard key={6} />
         <CoffeeCard key={7} />
+        <CoffeeCard key={8} />
+        <CoffeeCard key={9} />
       </CoffeeListContainer>
     </CoffeeListWrapper>
   )
