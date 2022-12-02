@@ -21,6 +21,14 @@ export const IntroContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 3.5rem;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+
+    img {
+      display: none;
+    }
+  }
 `
 export const TitleContainer = styled.div`
   display: flex;
@@ -67,4 +75,7 @@ export const ItemsContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   row-gap: 1.25rem;
   padding-top: 4.125rem;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `

@@ -14,11 +14,6 @@ export const CoffeListHeader = styled.header`
   }
 `
 export const CoffeeListContainer = styled.div`
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  column-gap: 2rem;
-  row-gap: 2.5rem; */
-
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
