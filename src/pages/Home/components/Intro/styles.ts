@@ -21,14 +21,6 @@ export const IntroContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 3.5rem;
-
-  @media (max-width: 1000px) {
-    flex-direction: column;
-
-    img {
-      display: none;
-    }
-  }
 `
 export const TitleContainer = styled.div`
   display: flex;
@@ -67,6 +59,11 @@ export const ImageContainer = styled.div`
   img {
     width: 29.75rem;
     height: 22.5rem;
+  }
+  @media (max-width: 1000px) {
+    max-width: 0;
+    max-height: 0;
+    visibility: hidden;
   }
 `
 export const ItemsContainer = styled.div`
