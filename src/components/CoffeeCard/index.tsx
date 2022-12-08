@@ -1,40 +1,78 @@
 import {
   AddCartWrapper,
   CartInfoPrice,
-  CoffeCardContainer,
+  CoffeeCardContainer,
   CoffeeCardFooter,
   CoffeeCardTagBadge,
   CoffeeDescription,
   CoffeeName,
 } from './styles'
 
-import Capuccino from './assets/Capuccino.png'
 import { ShoppingCart } from 'phosphor-react'
 import { CartQtdInput } from './components/CartQtdInput'
+import { useState } from 'react'
+import { useCart } from '../../hooks/useCart'
 
-export function CoffeeCard() {
+export interface Coffee {
+  id: number
+  tags: string[]
+  name: string
+  description: string
+  image: string
+  price: number
+}
+
+interface CoffeeProps {
+  coffee: Coffee
+}
+
+export function CoffeeCard({ coffee }: CoffeeProps) {
+  const [quantity, setQuantity] = useState(1)
+  const { addCoffeeToCart } = useCart()
+
+  function handleIncreaseQuantity() {
+    setQuantity((state) => state + 1)
+  }
+  function handleDecreaseQuantity() {
+    setQuantity((state) => state - 1)
+  }
+  function handleAddToCart() {
+    const coffeeToAdd = {
+      ...coffee,
+      quantity,
+    }
+    addCoffeeToCart(coffeeToAdd)
+  }
   return (
-    <CoffeCardContainer>
-      <img src={Capuccino} alt="" />
+    <CoffeeCardContainer>
+      <img src={`/coffees/${coffee.image}`} alt="" />
       <CoffeeCardTagBadge>
-        <span>TRADICIONAL</span>
+        {coffee.tags.map((tag) => {
+          return <span key={`${coffee.id}${tag}`}>{tag}</span>
+        })}
       </CoffeeCardTagBadge>
-      <CoffeeName>Expresso Tradicional</CoffeeName>
-      <CoffeeDescription>
-        O tradicional café feito com água quente e grãos moídos
-      </CoffeeDescription>
+      <CoffeeName>{coffee.name}</CoffeeName>
+      <CoffeeDescription>{coffee.description}</CoffeeDescription>
       <CoffeeCardFooter>
         <CartInfoPrice>
           <p>R$</p>
-          <strong>9,90</strong>
+          <strong>
+            {coffee.price.toLocaleString('pt-BR', {
+              minimumFractionDigits: 2,
+            })}
+          </strong>
         </CartInfoPrice>
         <AddCartWrapper>
-          <CartQtdInput quantity={1} />
-          <button>
+          <CartQtdInput
+            quantity={quantity}
+            onDecrease={handleDecreaseQuantity}
+            onIncrease={handleIncreaseQuantity}
+          />
+          <button onClick={handleAddToCart}>
             <ShoppingCart size={22} weight="fill" />
           </button>
         </AddCartWrapper>
       </CoffeeCardFooter>
-    </CoffeCardContainer>
+    </CoffeeCardContainer>
   )
 }

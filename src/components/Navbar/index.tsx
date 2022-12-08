@@ -7,8 +7,10 @@ import {
   LocationContainer,
 } from './styles'
 import logoCoffeDelivery from '../../assets/CoffeDeliveryLogo.png'
+import { useCart } from '../../hooks/useCart'
 
 export default function Navbar() {
+  const { cartQuantity } = useCart()
   return (
     <HeaderContainer>
       <div className="wrapper">
@@ -21,6 +23,7 @@ export default function Navbar() {
           </LocationContainer>
           <CartContainer>
             <NavLink to="/">
+              {cartQuantity >= 1 && <span>{cartQuantity}</span>}
               <ShoppingCart size={22} weight="fill" />
             </NavLink>
           </CartContainer>

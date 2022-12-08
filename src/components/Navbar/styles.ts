@@ -62,12 +62,36 @@ export const CartContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
+
   gap: 0.25rem;
+  height: 2.3rem;
+  width: 2.3rem;
+  position: relative;
 
   background: ${(props) => props.theme['yellow-light']};
   border-radius: 6px;
 
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    right: -0.5rem;
+    top: -0.5rem;
+
+    background: ${(props) => props.theme['yellow-dark']};
+    border-radius: 100%;
+
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 0.825rem;
+    line-height: 1.3%;
+    color: ${(props) => props.theme.white};
+    text-align: center;
+  }
   svg {
     color: ${(props) => props.theme['yellow-dark']};
   }
