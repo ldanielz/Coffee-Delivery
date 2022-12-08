@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CoffeCardContainer = styled.div`
+export const CoffeeCardContainer = styled.div`
   flex: 0 1 16rem;
 
   margin-bottom: 2.5rem;
@@ -22,26 +22,28 @@ export const CoffeCardContainer = styled.div`
     width: 7.5rem;
     height: 7.5rem;
     margin-top: -1.25rem;
+    margin-bottom: 1rem;
   }
 `
 
 export const CoffeeCardTagBadge = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-
-  margin: 1rem;
-  padding: 0.25rem 0.5rem;
+  justify-items: center;
   gap: 0.25rem;
-
-  background: ${(props) => props.theme['yellow-light']};
-  border-radius: 100px;
+  margin-bottom: 1.25rem;
 
   span {
+    background: ${(props) => props.theme['yellow-light']};
+    border-radius: 100px;
+    padding: 0.25rem 0.5rem;
     font-family: 'Roboto';
     font-weight: 700;
     font-size: 0.625rem;
     line-height: 130%;
+    text-transform: uppercase;
     color: ${(props) => props.theme['yellow-dark']};
   }
 `
@@ -51,7 +53,7 @@ export const CoffeeName = styled.div`
   font-weight: 700;
   font-size: 1.25rem;
   line-height: 1.3;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 `
 
 export const CoffeeDescription = styled.div`

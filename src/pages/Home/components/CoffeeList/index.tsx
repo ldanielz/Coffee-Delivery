@@ -2,26 +2,22 @@ import { CoffeeCard } from '../../../../components/CoffeeCard'
 import {
   CoffeeListContainer,
   CoffeeListWrapper,
-  CoffeListHeader,
+  CoffeeListHeader,
 } from './styles'
+
+import { CoffeesData } from '../../../../data/CoffeesData'
 
 export function CoffeeList() {
   return (
     <CoffeeListWrapper className="wrapper">
-      <CoffeListHeader>
+      <CoffeeListHeader>
         <h1>Nossos cafés</h1>
-      </CoffeListHeader>
+      </CoffeeListHeader>
 
       <CoffeeListContainer>
-        <CoffeeCard key={1} />
-        <CoffeeCard key={2} />
-        <CoffeeCard key={3} />
-        <CoffeeCard key={4} />
-        <CoffeeCard key={5} />
-        <CoffeeCard key={6} />
-        <CoffeeCard key={7} />
-        <CoffeeCard key={8} />
-        <CoffeeCard key={9} />
+        {CoffeesData.map((coffee) => {
+          return <CoffeeCard coffee={coffee} key={coffee.id} />
+        })}
       </CoffeeListContainer>
     </CoffeeListWrapper>
   )

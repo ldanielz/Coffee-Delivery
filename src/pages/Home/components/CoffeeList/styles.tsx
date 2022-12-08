@@ -4,7 +4,7 @@ export const CoffeeListWrapper = styled.section`
   width: 100%;
   margin-top: 2rem;
 `
-export const CoffeListHeader = styled.header`
+export const CoffeeListHeader = styled.header`
   width: 100%;
   > h1 {
     font-family: 'Baloo 2';

@@ -8,14 +8,18 @@ interface CartQtdInputProps {
   onDecrease?: () => void
 }
 
-export function CartQtdInput({ quantity }: CartQtdInputProps) {
+export function CartQtdInput({
+  quantity,
+  onDecrease,
+  onIncrease,
+}: CartQtdInputProps) {
   return (
     <QuantityInputContainer>
-      <IconInputWrapper disabled={quantity <= 1}>
+      <IconInputWrapper disabled={quantity <= 1} onClick={onDecrease}>
         <Minus size={14} weight="fill" />
       </IconInputWrapper>
       <input type="number" readOnly value={quantity} />
-      <IconInputWrapper>
+      <IconInputWrapper onClick={onIncrease}>
         <Plus size={14} weight="fill" />
       </IconInputWrapper>
     </QuantityInputContainer>
