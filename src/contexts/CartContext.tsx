@@ -82,6 +82,18 @@ export default function CartContextProvider({
     }
   }
 
+  function changeCartItem(cartItemId: number, type: 'increase' | 'decrease') {
+    console.log('changeCartItem')
+  }
+
+  function removeCartItem(cartItemId: number) {
+    console.log('removeCartItem')
+  }
+
+  function cleanCart() {
+    console.log('cleanCart')
+  }
+
   useEffect(() => {
     const stateCartItemsJson = JSON.stringify(cartItemsState)
     localStorage.setItem(COFFEE_ITEMS_STORAGE_KEY, stateCartItemsJson)
@@ -94,6 +106,9 @@ export default function CartContextProvider({
         cartItemsTotal,
         cartQuantity,
         addCoffeeToCart,
+        changeCartItem,
+        removeCartItem,
+        cleanCart,
       }}
     >
       {children}

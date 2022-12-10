@@ -3,14 +3,14 @@ interface QuantityInputContainerProps {
   size?: 'medium' | 'small'
 }
 export const QuantityInputContainer = styled.div<QuantityInputContainerProps>`
-  flex: 1;
+  flex: 0 0 4.5rem;
   background: ${(props) => props.theme['base-button']};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4px;
+  gap: 0.25rem;
   border-radius: 6px;
-  padding: 0.5rem 0.531rem;
+  padding: 0.5rem;
 
   input {
     text-align: center;

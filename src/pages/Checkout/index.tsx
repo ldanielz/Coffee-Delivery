@@ -21,7 +21,7 @@ enum PaymentMethods {
 }
 
 const confirmOrderFormValidatorSchema = zod.object({
-  cep: zod.string().min(1, 'Informe o cep'),
+  cep: zod.string().min(7, 'Informe o cep'),
   street: zod.string().min(1, 'Informe a Rua'),
   number: zod.string().min(1, 'Informe o Número'),
   complement: zod.string(),
@@ -56,7 +56,7 @@ export function Checkout() {
         <h1>Complete o seu Pedido</h1>
         <FormContainer>
           <TitleFormContainer>
-            <MapPinLine size={22} />
+            <MapPinLine size={22} color="#C47F17" />
             <div>
               <h3>Endereço de Entrega</h3>
               <p>Informe o endereço onde deseja receber seu pedido</p>
@@ -78,7 +78,7 @@ export function Checkout() {
         </FormContainer>
         <FormContainer>
           <TitleFormContainer>
-            <CurrencyDollar size={22} />
+            <CurrencyDollar size={22} color="#8047F8" />
             <div>
               <h3>Pagamento</h3>
               <p>
@@ -92,9 +92,11 @@ export function Checkout() {
         <h1>Cafés selecionados</h1>
 
         <DetailsContainer>
-          {cartItems.map((item) => {
-            return <CoffeeCartCard key={item.id} coffee={item} />
-          })}
+          <div>
+            {cartItems.map((item) => {
+              return <CoffeeCartCard key={item.id} coffee={item} />
+            })}
+          </div>
           <ConfirmationSectionContainer>
             <div>
               <p>Total de itens</p>
@@ -105,11 +107,11 @@ export function Checkout() {
               <p>R$ {formattedDeliveryPrice}</p>
             </div>
             <div>
-              <p>Total</p>
-              <p>R$ {formattedCartTotal} </p>
+              <h1>Total</h1>
+              <h1>R$ {formattedCartTotal} </h1>
             </div>
 
-            <button>{cartQuantity}</button>
+            <button disabled={cartQuantity <= 0}>Confirmar Pedido</button>
           </ConfirmationSectionContainer>
         </DetailsContainer>
       </SelectedCoffeesContainer>
