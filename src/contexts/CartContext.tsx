@@ -16,6 +16,9 @@ interface CartContextType {
   cartQuantity: number
   cartItemsTotal: number
   addCoffeeToCart: (coffee: CartItemCoffee) => void
+  changeCartItem: (cartItemId: number, type: 'increase' | 'decrease') => void
+  removeCartItem: (cartItemId: number) => void
+  cleanCart: () => void
 }
 
 interface CartContextProviderProps {
@@ -51,7 +54,9 @@ export default function CartContextProvider({
 
   const cartQuantity = cartItems.length
 
-  const cartItemsTotal = 0
+  const cartItemsTotal = cartItems.reduce((total, cartItem) => {
+    return total + cartItem.price * cartItem.quantity
+  }, 0)
 
   function addCoffeeToCart(coffee: CartItemCoffee) {
     const coffeeAlreadyExistsInCart = cartItems.findIndex(

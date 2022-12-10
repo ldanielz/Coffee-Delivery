@@ -24,9 +24,10 @@ export interface Coffee {
 
 interface CoffeeProps {
   coffee: Coffee
+  size?: 'medium' | 'small'
 }
 
-export function CoffeeCard({ coffee }: CoffeeProps) {
+export function CoffeeCard({ coffee, size }: CoffeeProps) {
   const [quantity, setQuantity] = useState(1)
   const { addCoffeeToCart } = useCart()
 
@@ -64,6 +65,7 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
         </CartInfoPrice>
         <AddCartWrapper>
           <CartQtdInput
+            size={size}
             quantity={quantity}
             onDecrease={handleDecreaseQuantity}
             onIncrease={handleIncreaseQuantity}

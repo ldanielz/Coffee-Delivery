@@ -3,7 +3,6 @@ import { useTheme } from 'styled-components'
 import CoffeDeliveryIntro from './assets/CoffeDeliveryIntro.png'
 import { ItemWithIcon } from './components/ItemWithIcon'
 import {
-  ImageContainer,
   IntroContainer,
   IntroWrapper,
   ItemsContainer,
@@ -47,9 +46,8 @@ export function Intro() {
             />
           </ItemsContainer>
         </TitleContainer>
-        <ImageContainer>
-          <img src={CoffeDeliveryIntro} alt="" />
-        </ImageContainer>
+
+        <img src={CoffeDeliveryIntro} alt="" />
       </IntroContainer>
     </IntroWrapper>
   )
