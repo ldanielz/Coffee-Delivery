@@ -24,6 +24,9 @@ export const CoffeeCardContainer = styled.div`
     margin-top: -1.25rem;
     margin-bottom: 1rem;
   }
+  @media (max-width: 1000px) {
+    flex: 1 0;
+  }
 `
 
 export const CoffeeCardTagBadge = styled.div`

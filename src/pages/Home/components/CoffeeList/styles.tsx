@@ -16,6 +16,7 @@ export const CoffeeListHeader = styled.header`
 export const CoffeeListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 2rem;
   justify-content: space-between;
 
   margin-top: 3.375rem;

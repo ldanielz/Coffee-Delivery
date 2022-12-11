@@ -3,6 +3,7 @@ import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { Coffee } from '../components/CoffeeCard'
 import {
   addNewItemCartAction,
+  removeItemCartAction,
   updateItemAction,
 } from '../reducers/cartItems/actions'
 import { CartItemsReducer } from '../reducers/cartItems/reducer'
@@ -16,6 +17,9 @@ interface CartContextType {
   cartQuantity: number
   cartItemsTotal: number
   addCoffeeToCart: (coffee: CartItemCoffee) => void
+  changeQtdItem: (cartItemId: number, type: 'increase' | 'decrease') => void
+  removeCartItem: (cartItemId: number) => void
+  cleanCart: () => void
 }
 
 interface CartContextProviderProps {
@@ -51,7 +55,9 @@ export default function CartContextProvider({
 
   const cartQuantity = cartItems.length
 
-  const cartItemsTotal = 0
+  const cartItemsTotal = cartItems.reduce((total, cartItem) => {
+    return total + cartItem.price * cartItem.quantity
+  }, 0)
 
   function addCoffeeToCart(coffee: CartItemCoffee) {
     const coffeeAlreadyExistsInCart = cartItems.findIndex(
@@ -77,6 +83,36 @@ export default function CartContextProvider({
     }
   }
 
+  function changeQtdItem(cartItemId: number, type: 'increase' | 'decrease') {
+    const indexCoffeAlreadyExistsInCart = cartItems.findIndex(
+      (cartItem) => cartItem.id === cartItemId,
+    )
+
+    if (
+      indexCoffeAlreadyExistsInCart !== undefined &&
+      indexCoffeAlreadyExistsInCart >= 0
+    ) {
+      const quantity = type === 'increase' ? 1 : -1
+      dispatch(updateItemAction(indexCoffeAlreadyExistsInCart, quantity))
+    }
+  }
+
+  function removeCartItem(cartItemId: number) {
+    const indexCoffeToRemoveInCart = cartItems.findIndex(
+      (cartItem) => cartItem.id === cartItemId,
+    )
+    if (
+      indexCoffeToRemoveInCart !== undefined &&
+      indexCoffeToRemoveInCart >= 0
+    ) {
+      dispatch(removeItemCartAction(indexCoffeToRemoveInCart))
+    }
+  }
+
+  function cleanCart() {
+    console.log('cleanCart')
+  }
+
   useEffect(() => {
     const stateCartItemsJson = JSON.stringify(cartItemsState)
     localStorage.setItem(COFFEE_ITEMS_STORAGE_KEY, stateCartItemsJson)
@@ -89,6 +125,9 @@ export default function CartContextProvider({
         cartItemsTotal,
         cartQuantity,
         addCoffeeToCart,
+        changeQtdItem,
+        removeCartItem,
+        cleanCart,
       }}
     >
       {children}

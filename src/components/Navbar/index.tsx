@@ -22,7 +22,7 @@ export default function Navbar() {
             <MapPin size={22} weight="fill" /> <span>Ananindeua, PA</span>
           </LocationContainer>
           <CartContainer>
-            <NavLink to="/">
+            <NavLink to="/checkout">
               {cartQuantity >= 1 && <span>{cartQuantity}</span>}
               <ShoppingCart size={22} weight="fill" />
             </NavLink>
