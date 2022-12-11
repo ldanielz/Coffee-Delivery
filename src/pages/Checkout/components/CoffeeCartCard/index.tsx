@@ -1,4 +1,5 @@
 import { Trash } from 'phosphor-react'
+import { FormEvent } from 'react'
 import { CartQtdInput } from '../../../../components/CoffeeCard/components/CartQtdInput'
 import { useCart } from '../../../../hooks/useCart'
 import { CartItem } from '../../../../reducers/cartItems/reducer'
@@ -12,17 +13,18 @@ interface CoffeeCartCardProps {
   coffee: CartItem
 }
 export function CoffeeCartCard({ coffee }: CoffeeCartCardProps) {
-  const { changeCartItem, removeCartItem } = useCart()
+  const { changeQtdItem, removeCartItem } = useCart()
 
   function handleIncrease() {
-    changeCartItem(coffee.id, 'increase')
+    changeQtdItem(coffee.id, 'increase')
   }
 
   function handleDecrease() {
-    changeCartItem(coffee.id, 'decrease')
+    changeQtdItem(coffee.id, 'decrease')
   }
 
-  function handleRemove() {
+  function handleRemove(event: FormEvent) {
+    event.preventDefault()
     removeCartItem(coffee.id)
   }
   const coffeeTotal = coffee.price * coffee.quantity

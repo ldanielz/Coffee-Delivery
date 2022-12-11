@@ -3,6 +3,7 @@ import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { Coffee } from '../components/CoffeeCard'
 import {
   addNewItemCartAction,
+  removeItemCartAction,
   updateItemAction,
 } from '../reducers/cartItems/actions'
 import { CartItemsReducer } from '../reducers/cartItems/reducer'
@@ -16,7 +17,7 @@ interface CartContextType {
   cartQuantity: number
   cartItemsTotal: number
   addCoffeeToCart: (coffee: CartItemCoffee) => void
-  changeCartItem: (cartItemId: number, type: 'increase' | 'decrease') => void
+  changeQtdItem: (cartItemId: number, type: 'increase' | 'decrease') => void
   removeCartItem: (cartItemId: number) => void
   cleanCart: () => void
 }
@@ -82,12 +83,30 @@ export default function CartContextProvider({
     }
   }
 
-  function changeCartItem(cartItemId: number, type: 'increase' | 'decrease') {
-    console.log('changeCartItem')
+  function changeQtdItem(cartItemId: number, type: 'increase' | 'decrease') {
+    const indexCoffeAlreadyExistsInCart = cartItems.findIndex(
+      (cartItem) => cartItem.id === cartItemId,
+    )
+
+    if (
+      indexCoffeAlreadyExistsInCart !== undefined &&
+      indexCoffeAlreadyExistsInCart >= 0
+    ) {
+      const quantity = type === 'increase' ? 1 : -1
+      dispatch(updateItemAction(indexCoffeAlreadyExistsInCart, quantity))
+    }
   }
 
   function removeCartItem(cartItemId: number) {
-    console.log('removeCartItem')
+    const indexCoffeToRemoveInCart = cartItems.findIndex(
+      (cartItem) => cartItem.id === cartItemId,
+    )
+    if (
+      indexCoffeToRemoveInCart !== undefined &&
+      indexCoffeToRemoveInCart >= 0
+    ) {
+      dispatch(removeItemCartAction(indexCoffeToRemoveInCart))
+    }
   }
 
   function cleanCart() {
@@ -106,7 +125,7 @@ export default function CartContextProvider({
         cartItemsTotal,
         cartQuantity,
         addCoffeeToCart,
-        changeCartItem,
+        changeQtdItem,
         removeCartItem,
         cleanCart,
       }}

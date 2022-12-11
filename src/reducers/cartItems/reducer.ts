@@ -27,6 +27,10 @@ export function CartItemsReducer(state: CartItemState, action: any) {
         draft.cartItems[action.payload.index].quantity +=
           action.payload.quantity
       })
+    case ActionTypes.REMOVE_ITEM_CART:
+      return produce(state, (draft) => {
+        draft.cartItems.splice(action.payload.index, 1)
+      })
 
     default:
       return state
