@@ -27,6 +27,7 @@ export const ItemIconDiv = styled.div<ItemIconDivProps>`
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
+  padding: 0.5rem;
 
   background: ${(props) => props.colorBackground};
   color: ${(props) => props.theme.white};

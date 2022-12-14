@@ -3,6 +3,7 @@ import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { Coffee } from '../components/CoffeeCard'
 import {
   addNewItemCartAction,
+  clearCartAction,
   removeItemCartAction,
   updateItemAction,
 } from '../reducers/cartItems/actions'
@@ -110,7 +111,7 @@ export default function CartContextProvider({
   }
 
   function cleanCart() {
-    console.log('cleanCart')
+    dispatch(clearCartAction())
   }
 
   useEffect(() => {

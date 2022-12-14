@@ -1,55 +1,86 @@
-import { Clock, CurrencyDollar, MapPin, Money } from 'phosphor-react'
-import { useLocation } from 'react-router-dom'
+import { Clock, CurrencyDollar, MapPin } from 'phosphor-react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { OrderData } from '../Checkout'
 import confirmedOrderIllustration from '../../assets/order-success.svg'
-
 import {
-  Item,
-  ItemIconDiv,
+  ItemWithIconText,
   OrderDetailsContainer,
   SuccessContainer,
 } from './styles'
+import { Item } from '../../components/ItemWithIcon/styles'
+import { useTheme } from 'styled-components'
+import { ItemWithIcon } from '../../components/ItemWithIcon'
+import { useEffect } from 'react'
 
 interface LocationType {
   state: OrderData
 }
 
 export function SuccessCheckout() {
+  const theme = useTheme()
   const { state } = useLocation() as unknown as LocationType
+  const navigate = useNavigate()
+
+  const paymentMethodText = {
+    credit: 'Cartão de Crédito',
+    debit: 'Débito',
+    money: 'Dinheiro',
+  }
+
+  useEffect(() => {
+    if (!state) {
+      navigate('/')
+    }
+  })
+
+  if (!state) return <></>
+
   return (
     <SuccessContainer className="wrapper">
       <div>
         <h1>Uhu! Pedido confirmado</h1>
-        <h1>Agora é só aguardar que logo o café chegará até você</h1>
+        <h2>Agora é só aguardar que logo o café chegará até você</h2>
       </div>
       <section>
         <OrderDetailsContainer>
           <Item>
-            <ItemIconDiv>{<MapPin weight="fill" />}</ItemIconDiv>
-            <span>
-              Entrega em{' '}
-              <strong>
-                {state.street}, {state.number}
-              </strong>
-              <br />
-              {state.district} - {state.city}, {state.uf}
-            </span>
+            <ItemWithIcon
+              icon={<MapPin size={16} weight="fill" />}
+              backgroundColor={theme.purple}
+              text={
+                <ItemWithIconText>
+                  Entrega em{' '}
+                  <strong>
+                    {state.street}, {state.number} {state?.complement}.
+                  </strong>{' '}
+                  {state.district} - {state.city}, {state.uf}
+                </ItemWithIconText>
+              }
+            />
           </Item>
           <Item>
-            <ItemIconDiv>{<Clock weight="fill" />}</ItemIconDiv>
-            <span>
-              Previsão de entrega
-              <br />
-              <strong>20 min - 30 min</strong>
-            </span>
+            <ItemWithIcon
+              icon={<Clock size={16} weight="fill" />}
+              backgroundColor={theme.yellow}
+              text={
+                <ItemWithIconText>
+                  Previsão de entrega <br />
+                  <strong>20 min - 30 min</strong>
+                </ItemWithIconText>
+              }
+            />
           </Item>
           <Item>
-            <ItemIconDiv>{<CurrencyDollar weight="fill" />}</ItemIconDiv>
-            <span>
-              Pagamento na entrega
-              <br />
-              <strong>{state.paymentMethod}</strong>
-            </span>
+            <ItemWithIcon
+              icon={<CurrencyDollar size={16} weight="fill" />}
+              backgroundColor={theme['yellow-dark']}
+              text={
+                <ItemWithIconText>
+                  Pagamento na entrega <br />
+                  <strong>{paymentMethodText[state.paymentMethod]}</strong>
+                </ItemWithIconText>
+              }
+            />
           </Item>
         </OrderDetailsContainer>
 

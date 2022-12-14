@@ -32,6 +32,11 @@ export function CartItemsReducer(state: CartItemState, action: any) {
         draft.cartItems.splice(action.payload.index, 1)
       })
 
+    case ActionTypes.CLEAN_CART:
+      return produce(state, (draft) => {
+        draft.cartItems = []
+      })
+
     default:
       return state
   }

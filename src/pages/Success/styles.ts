@@ -6,7 +6,19 @@ export const SuccessContainer = styled.div`
   margin-top: 5rem;
 
   h1 {
+    font-family: 'Baloo 2', serif;
+    font-weight: 800;
+    font-size: 2rem;
+    line-height: 1.3;
     color: ${({ theme }) => theme['yellow-dark']};
+  }
+
+  h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    color: ${({ theme }) => theme['base-subtitle']};
   }
 
   > section {
@@ -48,31 +60,11 @@ export const OrderDetailsContainer = styled.div`
     width: 100%;
   }
 `
+export const ItemWithIconText = styled.p`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.3;
 
-export const Item = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-
-  div {
-  }
-  span {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-
-    font-size: 1rem;
-    line-height: 1.3;
-  }
-`
-export const ItemIconDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-
-  background: ${(props) => props.theme.purple};
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme['base-text']};
 `

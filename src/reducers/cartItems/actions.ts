@@ -5,6 +5,7 @@ export enum ActionTypes {
   ADD_NEW_ITEM = 'ADD_NEW_ITEM',
   UPDATE_QTD_ITEM = 'UPDATE_QTD_ITEM',
   REMOVE_ITEM_CART = 'REMOVE_ITEM_CART',
+  CLEAN_CART = 'CLEAN_CART',
 }
 
 export function addNewItemCartAction(newItem: CartItem) {
@@ -25,5 +26,11 @@ export function removeItemCartAction(index: number) {
   return {
     type: ActionTypes.REMOVE_ITEM_CART,
     payload: { index },
+  }
+}
+
+export function clearCartAction() {
+  return {
+    type: ActionTypes.CLEAN_CART,
   }
 }
