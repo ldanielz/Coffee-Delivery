@@ -10,6 +10,7 @@
     "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
     "immer": "^9.0.16",
     "phosphor-react": "^1.4.1",
     "react": "^18.2.0",

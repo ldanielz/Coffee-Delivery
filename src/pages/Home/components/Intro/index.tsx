@@ -1,7 +1,7 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { useTheme } from 'styled-components'
 import CoffeDeliveryIntro from './assets/CoffeDeliveryIntro.png'
-import { ItemWithIcon } from './components/ItemWithIcon'
+import { ItemWithIcon } from '../../../../components/ItemWithIcon'
 import {
   IntroContainer,
   IntroWrapper,

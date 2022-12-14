@@ -24,7 +24,6 @@ export function CoffeeCartCard({ coffee }: CoffeeCartCardProps) {
   }
 
   function handleRemove(event: FormEvent) {
-    event.preventDefault()
     removeCartItem(coffee.id)
   }
   const coffeeTotal = coffee.price * coffee.quantity

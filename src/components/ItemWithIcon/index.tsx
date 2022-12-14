@@ -3,7 +3,7 @@ import { Item, ItemIconDiv } from './styles'
 
 interface ItemWithIconProps {
   icon: ReactNode
-  text: string
+  text: string | ReactNode
   backgroundColor: string
 }
 
@@ -15,7 +15,7 @@ export function ItemWithIcon({
   return (
     <Item>
       <ItemIconDiv colorBackground={backgroundColor}>{icon}</ItemIconDiv>
-      <span>{text}</span>
+      {typeof text === 'string' ? <p>{text}</p> : text}
     </Item>
   )
 }
